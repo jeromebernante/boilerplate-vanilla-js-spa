@@ -8,29 +8,27 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Preload key components -->
   <link rel="preload" href="/components/header.html" as="fetch" crossorigin="anonymous">
-  <link rel="preload" href="/components/footer.html" as="fetch" crossorigin="anonymous">
+  <!-- <link rel="preload" href="/components/footer.html" as="fetch" crossorigin="anonymous"> -->
 </head>
-<body class="min-h-screen bg-gray-50">
-  <header id="header"></header>
-  <main id="app" class="container mx-auto px-4 py-8"></main>
-  <footer id="footer"></footer>
+<body class="flex flex-col min-h-screen bg-gray-50">
+  
+  <div id="header"></div>
+  <div class="flex border border-green-500">
+    <div id="left-aside" class="flex"></div>
+    <div id="main" class="flex w-full"></div>
+    <div id="right-aside" class="flex"></div>
+  </div>
+  <div id="footer"></div>
 
   <script>
     // Error handling and debug info
     window.addEventListener('error', function(e) {
       console.error('Script error:', e);
     });
-    console.log('Index.html loaded');
   </script>
   <script src="/js/app.js"></script>
-  <script>
-    // Verify app.js is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM Content Loaded');
-      if (!window.initApp) {
-        console.error('App.js did not load properly');
-      }
-    });
-  </script>
 </body>
 </html>
+
+
+

@@ -21,7 +21,8 @@ const routes = {
   "/": { file: "/pages/home.html", title: "Home | Pretty Page JS" },
   "/home": { file: "/pages/home.html", title: "Home | Pretty Page JS" },
   "/about": { file: "/pages/about.html", title: "About Us | Pretty Page JS" },
-  "/contact": { file: "/pages/contact.html", title: "Contact Us | Pretty Page JS" }
+  "/contact": { file: "/pages/contact.html", title: "Contact Us | Pretty Page JS" },
+  "/admin": { file: "/pages/admin.html", title: "Admin | Pretty Page JS" }
 };
 
 // Component registry: which components to load for which pages
@@ -42,7 +43,10 @@ const pageComponents = {
   ],
   "/about": [
     { selector: "#gallery-component", file: "/components/gallery.html" }
-  ]
+  ],
+    "/admin": [
+    { selector: "#left-aside", file: "/components/left-aside.html" }
+  ],
 };
 
 // Load optional components for a page
@@ -76,13 +80,25 @@ async function renderRoute() {
     if (!res.ok) {
       throw new Error(`Failed to load ${route.file}`);
     }
-    document.getElementById("app").innerHTML = await res.text();
+    document.getElementById("main").innerHTML = await res.text();
 
     // Load optional components
     await loadPageComponents(path);
 
     // Update active nav link
     updateActiveLink(path);
+
+    // Initialize menu toggle for admin page
+    if (path === '/admin') {
+      const toggleBtn = document.getElementById('menu-toggle');
+      const sidebar = document.getElementById('sidebar');
+      if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', () => {
+          console.log('Menu toggle clicked');
+          sidebar.classList.toggle('-translate-x-full');
+        });
+      }
+    }
 
     // Ensure title is set after content loads
     requestAnimationFrame(() => {
@@ -119,11 +135,6 @@ document.addEventListener("click", e => {
 
 // Initialize the application
 async function initApp() {
-  // Load header and footer components
-  await Promise.all([
-    loadComponent("#header", "/components/header.html"),
-    loadComponent("#footer", "/components/footer.html")
-  ]);
 
   // Get the current path and update history if needed
   const path = window.location.pathname;

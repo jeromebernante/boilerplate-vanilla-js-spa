@@ -1,0 +1,1 @@
+instead of toggleBtn script put in app.js, create admin.js then if path admin then insert that js
