@@ -1,11 +1,11 @@
 // js/main.js
-import { Header } from './components/header.js';
-import { About } from './components/about.js';
-import { Projects } from './components/projects.js';
-import { Contact } from './components/contact.js';
-import { Footer } from './components/footer.js';
+import { Header } from './components/sections/header.js';
+import { About } from './components/pages/about.js';
+import { Projects } from './components/pages/projects.js';
+import { Contact } from './components/pages/contact.js';
+import { Footer } from './components/sections/footer.js';
 import { Router, initLinks } from './router.js';
-import { Home } from './components/home.js';   // ← add this
+import { Home } from './components/pages/home.js';
 
 // -------------------------------------------------
 // 1. Define routes (path → component)
