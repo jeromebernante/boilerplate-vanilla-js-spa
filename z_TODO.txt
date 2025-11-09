@@ -1,4 +1,0 @@
-cd "D:/JEROME/SKILLS/SOFTWARE DEVELOPMENT/PROJECTS/VANILLA_HTML_CSS_JS/boilerplate-vanilla-js-spa/public"
-serve -s .
-
-instead of toggleBtn script put in app.js, create admin.js then if path admin then insert that js
